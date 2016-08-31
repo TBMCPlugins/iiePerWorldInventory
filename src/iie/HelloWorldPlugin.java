@@ -16,19 +16,27 @@ public class HelloWorldPlugin extends JavaPlugin {
 	public static AbstractMap<String,String> deathMap = new HashMap<String,String>();
 	
 	public void onEnable(){
-		registerCommands();
-		getServer().getPluginManager().registerEvents(new DeathListener(this), this);
 		
 		
-		board = Bukkit.getServer().getScoreboardManager().getMainScoreboard();		
 		try{
 			board.getObjective("hardcoreTimeDead");
-		}catch (IllegalArgumentException e){
-			hardcoreTimeDead = board.registerNewObjective("hardcoreTimeDead", "dummy");
-		}finally{
-			hardcoreTimeDead = board.getObjective("hardcoreTimeDead");
-		}
+			}catch (NullPointerException e){
+				hardcoreTimeDead = board.registerNewObjective("hardcoreTimeDead", "dummy");
+			}finally{
+				hardcoreTimeDead = board.getObjective("hardcoreTimeDead");
+			}
 		
+		
+		board = Bukkit.getServer().getScoreboardManager().getMainScoreboard();			
+		if (board.getObjective("hardcoreTimeDead") != null){
+			hardcoreTimeDead = board.getObjective("hardcoreTimeDead");
+		}else{
+			hardcoreTimeDead = board.registerNewObjective("hardcoreTimeDead", "dummy");
+
+		}		
+		
+		registerCommands();
+		getServer().getPluginManager().registerEvents(new DeathListener(this), this);
 		
 	}
 	public void registerCommands(){
@@ -36,3 +44,11 @@ public class HelloWorldPlugin extends JavaPlugin {
 	}
 
 }
+
+//try{
+//	board.getObjective("hardcoreTimeDead");
+//}catch (IllegalArgumentException e){
+//	hardcoreTimeDead = board.registerNewObjective("hardcoreTimeDead", "dummy");
+//}finally{
+//	hardcoreTimeDead = board.getObjective("hardcoreTimeDead");
+//}

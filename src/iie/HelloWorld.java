@@ -54,7 +54,12 @@ public class HelloWorld implements CommandExecutor {
 				sender.sendMessage("you are dead for the next " + (86400000 - (currentTime - deathTime) ) /3600000 + " hours");			
 			}
 			
+			
+			
+			sender.sendMessage("Your hardcoreTimeDead score is " + String.valueOf(HelloWorldPlugin.hardcoreTimeDead.getScore(playername).getScore()));
+			
 					
+			
 		}else{			
 			sender.sendMessage("You must be a player to use this command!");			
 		}
