@@ -1,6 +1,6 @@
- main: iie.HelloWorldPlugin
+ main: iie.PerWorldInventoryPlugin
  version: 1.0.0
- name: HelloWorldPlugin
+ name: PerWorldInventoryPlugin
  commands:
-   HelloWorld:
-     description: Command that says Hello World!
+   soundtest:
+     description: performs SoundTest
