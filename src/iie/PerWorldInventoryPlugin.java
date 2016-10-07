@@ -9,13 +9,7 @@ public class PerWorldInventoryPlugin extends JavaPlugin {
 	
 	public void onEnable(){		
 		getServer().getPluginManager().registerEvents(new WorldChangeListener(this), this);
-		registerCommands();
 		createConfig();	
-	}
-	
-	
-	public void registerCommands(){
-		getCommand("soundtest").setExecutor(new SoundTest (this));
 	}
 	
 	
