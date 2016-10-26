@@ -62,8 +62,8 @@ public class Serializer {
 	
 	public static void setInventoryFromSerialized (IInventory invInventory, String invString){
 		invInventory.l();
-		if (invString != null && invString.contains(";"))
-			Arrays.asList(invString.split("(;)"))
+		if (invString != null)
+			Arrays.asList(invString.split(";"))
 					.stream()
 					.forEach(s -> {
 							String[] e = s.split("#");

@@ -42,22 +42,22 @@ public class WorldChangeListener implements Listener {
 
 		//----------------------------------------------------------------------instantiations			
 		
-		//Serializer serializer = new Serializer(player);
-			
+
+		
 		//----------------------------------------------------------------------INVENTORY
 
 
 		final IInventory inventory = ((CraftInventory)player.getInventory()).getInventory();
 		
-		config.set(pathFrom + "inventory", Serializer.serializeInventory(inventory));
+		config.set(pathFrom + "inventory", SerializerDebug.serializeInventory(inventory, player));
 		
 		plugin.saveConfig();
 		
-		Serializer.setInventoryFromSerialized(inventory, (String) config.get(pathTo + "inventory"));
+		SerializerDebug.setInventoryFromSerialized(inventory, (String) config.get(pathTo + "inventory"), player);
 		
 		//player.getInventory().clear();
 		//player.getInventory().setContents(
-		//		Serializer.InventoryFromString(invString, invInventory.getType())
+		//		SerializerDebug.InventoryFromString(invString, invInventory.getType())
 		//		.getContents()
 		//		);
 		
@@ -66,15 +66,15 @@ public class WorldChangeListener implements Listener {
 		
 		final IInventory enderchest = ((CraftInventory)player.getEnderChest()).getInventory();
 		
-		config.set(pathFrom + "enderchest", Serializer.serializeInventory(enderchest));
+		config.set(pathFrom + "enderchest", SerializerDebug.serializeInventory(enderchest, player));
 		
 		plugin.saveConfig();
 				
-		Serializer.setInventoryFromSerialized(enderchest, (String) config.get(pathTo + "enderchest"));
+		SerializerDebug.setInventoryFromSerialized(enderchest, (String) config.get(pathTo + "enderchest"), player);
 		
 		//player.getEnderChest().clear();
 		//player.getEnderChest().setContents(
-		//		Serializer.InventoryFromString(invString, invInventory.getType())
+		//		SerializerDebug.InventoryFromString(invString, invInventory.getType())
 		//		.getContents()
 		//		);
 		
