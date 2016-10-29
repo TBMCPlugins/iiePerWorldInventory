@@ -272,11 +272,7 @@ public class SerializerOld {
 						serializedItemStack += ":owner@" + ((SkullMeta) im).getOwner();
 					if (texture != null)
 						serializedItemStack += ":texture@" + texture;
-					((Player) invInventory.getHolder()).sendMessage(
-							Serializers.serializeItemStack(
-									((CraftInventory) invInventory).getInventory().getContents()[i]
-									)
-							);
+					
 				}
 				
 				

@@ -44,31 +44,17 @@ public class WorldChangeManager {
 		 * 	shares with its group in only one traffic direction
 		 */
 		
-		if (params[0][0].equals(params[1][0])//inv
-				&& (
-						(
-								params[0].length > 1 ? params[0][1].equals("in") : true
-								&& params[1].length > 1 ? params[1][1].equals("out") : true
-								)
-						|| (
-								params[1].length > 1 ? params[1][1].equals("out") : true
-								&& params[0].length > 1 ? params[1][1].equals("in") : true
-								)
-						)
+		if (
+				params[0][0].equals(params[1][0])//inv
+				&& params[0].length > 1 ? params[0][1].equals("in") : true
+				&& params[1].length > 1 ? params[1][1].equals("out") : true
 				) 
 			result[0] = true;
 		
-		if (params[2][0].equals(params[3][0])//data
-				&& (
-						(
-								params[2].length > 1 ? params[2][1].equals("in") : true
-								&& params[3].length > 1 ? params[3][1].equals("out") : true
-								)
-						|| (
-								params[3].length > 1 ? params[3][1].equals("out") : true
-								&& params[2].length > 1 ? params[3][1].equals("in") : true
-								)
-						)
+		if (
+				params[2][0].equals(params[3][0])//data
+				&& params[2].length > 1 ? params[2][1].equals("in") : true
+				&& params[3].length > 1 ? params[3][1].equals("out") : true
 				) 
 			result[1] = true;
 		
