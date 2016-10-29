@@ -1,4 +1,4 @@
-package iie;
+package serializers;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,30 +15,25 @@ import net.minecraft.server.v1_10_R1.ItemStack;
 import net.minecraft.server.v1_10_R1.NBTCompressedStreamTools;
 import net.minecraft.server.v1_10_R1.NBTTagCompound;
 
-public class Serializer {
+public class inventory {
 	
 	
-	
+	//SERIALIZE ITEMSTACK
 	public static String serializeItemStack(ItemStack itemStack){
-		
-		if (itemStack == null) return "null";
-		
+		NBTTagCompound tag = itemStack.save(new NBTTagCompound());
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		
-		try { NBTCompressedStreamTools.a(itemStack.getTag(), outputStream); } 
+		try { NBTCompressedStreamTools.a(tag, outputStream); } 
 		catch (IOException e) { e.printStackTrace(); }
 		
 		return Base64.encodeBase64String(outputStream.toByteArray());
 	}
 	
 	
-	
+	//DESERIALIZE ITEMSTACK
 	public static ItemStack deserializeItemStack(String itemStackString){
-		
-		if (itemStackString.equals("null")) return null;
-	   
-		ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64.decodeBase64(itemStackString));
 		NBTTagCompound nbtTagCompound = null;
+		ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64.decodeBase64(itemStackString));
 		
 		try {nbtTagCompound = NBTCompressedStreamTools.a(inputStream);} 
 		catch (IOException e) {e.printStackTrace();}
@@ -47,8 +42,8 @@ public class Serializer {
 	}
 	
 	
-	
-	public static String serializeInventory (IInventory invInventory){
+	//SERIALIZE INVENTORY
+	public static String serialize (IInventory invInventory){
 		return IntStream.range(0, invInventory.getSize())
 				.mapToObj(s -> {
 						ItemStack i = invInventory.getItem(s);
@@ -59,12 +54,12 @@ public class Serializer {
 	}
 	
 	
-	
-	public static void setInventoryFromSerialized (IInventory invInventory, String invString){
-		invInventory.l();
-		if (invString != null)
+	//SET INVENTORY FROM SERIALIZED
+	public static void setFromSerialized (IInventory invInventory, String invString){
+		invInventory.l();//clear inventory
+		if (invString != null && !invString.isEmpty())
 			Arrays.asList(invString.split(";"))
-					.stream()
+					.parallelStream()
 					.forEach(s -> {
 							String[] e = s.split("#");
 							invInventory.setItem(Integer.parseInt(e[0]), deserializeItemStack(e[1]));

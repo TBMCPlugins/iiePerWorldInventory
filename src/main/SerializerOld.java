@@ -1,4 +1,4 @@
-package iie;
+package main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -273,7 +273,7 @@ public class SerializerOld {
 					if (texture != null)
 						serializedItemStack += ":texture@" + texture;
 					((Player) invInventory.getHolder()).sendMessage(
-							Serializer.serializeItemStack(
+							Serializers.serializeItemStack(
 									((CraftInventory) invInventory).getInventory().getContents()[i]
 									)
 							);
