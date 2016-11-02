@@ -1,4 +1,4 @@
-package main;
+package buttondevteam.perworld.main;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

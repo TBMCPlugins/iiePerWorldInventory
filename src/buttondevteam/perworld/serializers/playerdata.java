@@ -1,4 +1,4 @@
-package serializers;
+package buttondevteam.perworld.serializers;
 
 import java.util.Arrays;
 
