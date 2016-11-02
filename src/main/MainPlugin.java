@@ -2,12 +2,14 @@ package main;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import buttondevteam.lib.TBMCCoreAPI;
+
 public class MainPlugin extends JavaPlugin {
 		
 	public void onEnable(){
 		
 		//getServer().getPluginManager().registerEvents(new WorldLoadListener(this), this);
-		getServer().getPluginManager().registerEvents(new WorldChangeListener(this), this);
+		TBMCCoreAPI.RegisterEventsForExceptions(new WorldChangeListener(this), this);
 		MainPlugin.getPlugin(this.getClass()).getServer().getListeningPluginChannels();
 		
 		saveDefaultConfig();
