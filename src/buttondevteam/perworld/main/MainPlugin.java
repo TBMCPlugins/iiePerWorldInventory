@@ -4,6 +4,8 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import buttondevteam.lib.TBMCCoreAPI;
+
 public class MainPlugin extends JavaPlugin {
 	
 	
@@ -17,8 +19,10 @@ public class MainPlugin extends JavaPlugin {
 	
 	public void onEnable(){
 		
-		getServer().getPluginManager().registerEvents(new ListenerPlayerJoin(this), this);
-		getServer().getPluginManager().registerEvents(new ListenerPlayerWorldChange(this), this);
+		//getServer().getPluginManager().registerEvents(new WorldLoadListener(this), this);
+		TBMCCoreAPI.RegisterEventsForExceptions(new WorldChangeListener(this), this);
+		TBMCCoreAPI.RegisterEventsForExceptions(new ListenerPlayerWorldChange(this), this);
+		
 		saveDefaultConfig();
 		
 		plugin = this;
