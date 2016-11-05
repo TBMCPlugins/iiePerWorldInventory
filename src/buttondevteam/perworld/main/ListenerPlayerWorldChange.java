@@ -1,6 +1,6 @@
-package main;
+package buttondevteam.perworld.main;
 
-import static main.MainPlugin.debugClock;
+import static buttondevteam.perworld.main.MainPlugin.debugClock;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

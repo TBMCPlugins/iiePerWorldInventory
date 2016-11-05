@@ -1,4 +1,4 @@
-package main;
+package buttondevteam.perworld.main;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -30,6 +30,6 @@ public class MainPlugin extends JavaPlugin {
 		if (!config.contains("players")) config.createSection("players");
 		saveConfig();
 		
-		new cache.world.ShareSettings().initCache();
+		new buttondevteam.perworld.cache.world.ShareSettings().initCache();
 	}
 }

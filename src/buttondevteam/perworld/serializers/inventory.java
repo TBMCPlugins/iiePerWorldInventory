@@ -1,4 +1,4 @@
-package serializers;
+package buttondevteam.perworld.serializers;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

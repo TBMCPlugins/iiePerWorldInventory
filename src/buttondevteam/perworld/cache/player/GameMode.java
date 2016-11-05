@@ -1,4 +1,4 @@
-package cache.player;
+package buttondevteam.perworld.cache.player;
 
 import java.util.HashMap;
 

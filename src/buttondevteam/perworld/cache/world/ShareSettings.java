@@ -1,8 +1,8 @@
-package cache.world;
+package buttondevteam.perworld.cache.world;
 
 import java.util.HashMap;
 
-import cache.CacheInterface;
+import buttondevteam.perworld.cache.CacheInterface;
 
 public class ShareSettings implements CacheInterface {
 	
