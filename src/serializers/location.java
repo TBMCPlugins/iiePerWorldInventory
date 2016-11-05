@@ -10,10 +10,10 @@ public class location {
 	public static String serialize(Location location){	
 		return 
 				location.getBlockX() + ","
-				+ location.getBlockZ() + ","
 				+ location.getBlockY() + ","
-				+ location.getPitch() + ","
-				+ location.getYaw();
+				+ location.getBlockZ() + ","
+				+ location.getYaw() + ","
+				+ location.getPitch();
 	}
 	
 	

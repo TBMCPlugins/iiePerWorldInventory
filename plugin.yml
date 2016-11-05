@@ -1,3 +1,5 @@
  main: main.MainPlugin
  version: 1.0.0
  name: PerWorldInventories
+ softdepend:
+   [Multiverse-Core]

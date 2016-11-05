@@ -1,65 +1,19 @@
 package main;
 
-import java.util.Arrays;
-
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftInventory;
 import org.bukkit.entity.Player;
 
 import net.minecraft.server.v1_10_R1.IInventory;
 
-public class WorldChangeManager {
-	
-	private static MainPlugin plugin;
-	private static FileConfiguration config;
-	public static void init(MainPlugin plugin){ //onEnable()
-		WorldChangeManager.plugin = plugin;
-		WorldChangeManager.config = plugin.getConfig();
-	}
-	
-	
-	//EVALUATE SHARE SETTINGS
-	public static boolean[] compare (String worldTo, String worldFrom) {
-		boolean[] result = new boolean[] {false,false};
-		String[][] params = 
-				(String[][]) Arrays.asList
-						(new String[] {
-								(String) config.get(worldTo + ".settings.shareinvgroup"),
-								(String) config.get(worldFrom + ".settings.shareinvgroup"),
-								(String) config.get(worldTo + ".settings.sharedatagroup"),
-								(String) config.get(worldFrom + ".settings.sharedatagroup")
-								})
-										.stream()
-										.map(s -> (String[]) s
-												.trim()
-												.replaceAll("( )", "")
-												.toLowerCase()
-												.split("\\*"))
-										.toArray(String[][]::new);
-		
-		/*	Each world has two sharing settings: for inventory sharing,
-		 * 	and for playerdata sharing. Each setting has two parameters:
-		 * 	the sharegroup flag, which labels a group of sharing worlds,
-		 * 	and an optional suffix, *in or *out, specifying that the world
-		 * 	shares with its group in only one traffic direction
-		 */
-		
-		if (
-				params[0][0].equals(params[1][0])//inv
-				&& params[0].length > 1 ? params[0][1].equals("in") : true
-				&& params[1].length > 1 ? params[1][1].equals("out") : true
-				) 
-			result[0] = true;
-		
-		if (
-				params[2][0].equals(params[3][0])//data
-				&& params[2].length > 1 ? params[2][1].equals("in") : true
-				&& params[3].length > 1 ? params[3][1].equals("out") : true
-				) 
-			result[1] = true;
-		
-		return result;
-	}
+import static cache.world.ShareSettings.compare;
+import static main.MainPlugin.plugin;
+
+import java.util.stream.Collectors;
+
+import static main.MainPlugin.config;
+import static main.MainPlugin.debugClock;
+
+public class PlayerUpdater {
 	
 	
 	//VALUES USED BY THE UPDATE METHODS
@@ -77,15 +31,18 @@ public class WorldChangeManager {
 			this.uuid = player.getUniqueId().toString();
 			this.worldTo = worldTo;
 			this.worldFrom = worldFrom;
-			this.pTo = worldTo + ".players." + uuid;
-			this.pFrom = worldFrom + ".players." + uuid;
+			this.pTo = "worlds." + worldTo + ".players." + uuid;
+			this.pFrom = "worlds." + worldFrom + ".players." + uuid;
 			
-			boolean[] compare = compare(worldTo,worldFrom);
+			boolean[] compare = compare(worldTo, worldFrom);
+			//compare() is a static import from world.ShareSettings.java
 			
 			this.shareinv = compare[0];
 			this.sharedata = compare[1];
 		}
 	}
+		
+	
 	
 	
 	//MAIN UPDATE METHOD
@@ -96,6 +53,10 @@ public class WorldChangeManager {
 		updateLocation(values, player);
 		updateInventories(values, player);
 		//updatePlayerData(values, player);
+		
+		player.sendMessage("...done, " + (System.currentTimeMillis() - debugClock) + " ms");
+		new cache.world.ShareSettings().initCache();
+		player.sendMessage(cache.world.ShareSettings.cache.keySet().stream().collect(Collectors.joining(",")));
 	}
 	
 	
