@@ -1,4 +1,4 @@
-package buttondevteam.perworld.serializers;
+package tbmc.perworld.serializers;
 
 import org.bukkit.Location;
 import org.bukkit.World;

@@ -1,4 +1,4 @@
-package buttondevteam.perworld.main;
+package tbmc.perworld.main;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

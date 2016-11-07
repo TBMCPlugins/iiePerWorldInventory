@@ -1,0 +1,26 @@
+# two spaces __ per indent
+
+
+teleport-commands: #not coded yet
+settings:
+  world:
+  #=======================================================================#
+  # Possible values:                                                      #
+  #                                                                       #
+  #  [WORLD]:                                                             #
+  #    share:                                                             #
+  #      inventory:                                                       #
+  #        group: [GROUP NAME] or '' to share with all worlds             #
+  #        type:  [0, 1, or 2]                                            #
+  #                                                                       #
+  #          0 - default                                                  #
+  #          1 - IN, share only for incoming traffic                      #
+  #          2 - OUT, share only for outgoing traffic                     #
+  #                                                                       #
+  #      playerdata:                                                      #
+  #        group:                                                         #
+  #        type:                                                          #
+  #=======================================================================#
+  player:
+worlds:
+players:

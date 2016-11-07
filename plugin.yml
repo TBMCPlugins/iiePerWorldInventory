@@ -1,4 +1,4 @@
- main: buttondevteam.perworld.main.MainPlugin
+ main: tbmc.perworld.main.MainPlugin
  version: 1.0.0
  name: PerWorldInventories
  softdepend:

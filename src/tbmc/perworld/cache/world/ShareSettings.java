@@ -1,8 +1,8 @@
-package buttondevteam.perworld.cache.world;
+package tbmc.perworld.cache.world;
 
 import java.util.HashMap;
 
-import buttondevteam.perworld.cache.CacheInterface;
+import tbmc.perworld.cache.CacheInterface;
 
 public class ShareSettings implements CacheInterface {
 	

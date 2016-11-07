@@ -1,10 +1,10 @@
-package buttondevteam.perworld.main;
+package tbmc.perworld.main;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import buttondevteam.lib.TBMCCoreAPI;
+//import buttondevteam.lib.TBMCCoreAPI;
 
 public class MainPlugin extends JavaPlugin {
 	
@@ -19,9 +19,10 @@ public class MainPlugin extends JavaPlugin {
 	
 	public void onEnable(){
 		
-		//getServer().getPluginManager().registerEvents(new WorldLoadListener(this), this);
-		TBMCCoreAPI.RegisterEventsForExceptions(new WorldChangeListener(this), this);
-		TBMCCoreAPI.RegisterEventsForExceptions(new ListenerPlayerWorldChange(this), this);
+		getServer().getPluginManager().registerEvents(new ListenerPlayerJoin(this), this);
+		getServer().getPluginManager().registerEvents(new ListenerPlayerWorldChange(this), this);
+		//TBMCCoreAPI.RegisterEventsForExceptions(new ListenerPlayerJoin(this), this);
+		//TBMCCoreAPI.RegisterEventsForExceptions(new ListenerPlayerWorldChange(this), this);
 		
 		saveDefaultConfig();
 		
@@ -30,10 +31,6 @@ public class MainPlugin extends JavaPlugin {
 		worlds = config.getConfigurationSection("worlds");
 		players = config.getConfigurationSection("players");
 		
-		if (!config.contains("worlds")) config.createSection("worlds");
-		if (!config.contains("players")) config.createSection("players");
-		saveConfig();
-		
-		new buttondevteam.perworld.cache.world.ShareSettings().initCache();
+		new tbmc.perworld.cache.world.ShareSettings().initCache();
 	}
 }
