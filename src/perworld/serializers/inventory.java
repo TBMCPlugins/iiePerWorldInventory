@@ -1,4 +1,4 @@
-package tbmc.perworld.serializers;
+package perworld.serializers;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

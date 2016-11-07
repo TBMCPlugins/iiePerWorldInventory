@@ -1,4 +1,4 @@
-package tbmc.perworld.main;
+package perworld.main;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package tbmc.perworld.serializers;
+package perworld.serializers;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

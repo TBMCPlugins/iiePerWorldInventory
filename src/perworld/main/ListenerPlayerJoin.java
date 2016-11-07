@@ -1,4 +1,4 @@
-package tbmc.perworld.main;
+package perworld.main;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

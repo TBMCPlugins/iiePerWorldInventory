@@ -1,8 +1,8 @@
-package tbmc.perworld.cache.world;
+package perworld.cache.world;
 
 import java.util.HashMap;
 
-import tbmc.perworld.cache.CacheInterface;
+import perworld.cache.CacheInterface;
 
 public class ShareSettings implements CacheInterface {
 	

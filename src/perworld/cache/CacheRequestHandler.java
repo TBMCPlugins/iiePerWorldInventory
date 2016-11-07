@@ -1,4 +1,4 @@
-package tbmc.perworld.cache;
+package perworld.cache;
 
 public class CacheRequestHandler {
 	

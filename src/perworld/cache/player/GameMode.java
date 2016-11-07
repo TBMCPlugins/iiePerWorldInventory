@@ -1,4 +1,4 @@
-package tbmc.perworld.cache.player;
+package perworld.cache.player;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package tbmc.perworld.main;
+package perworld.main;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -31,6 +31,6 @@ public class MainPlugin extends JavaPlugin {
 		worlds = config.getConfigurationSection("worlds");
 		players = config.getConfigurationSection("players");
 		
-		new tbmc.perworld.cache.world.ShareSettings().initCache();
+		new perworld.cache.world.ShareSettings().initCache();
 	}
 }

@@ -1,4 +1,4 @@
-package tbmc.perworld.main;
+package perworld.main;
 
 import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftInventory;
 import org.bukkit.entity.Player;
@@ -7,10 +7,10 @@ import net.minecraft.server.v1_10_R1.IInventory;
 
 import java.util.stream.Collectors;
 
-import static tbmc.perworld.cache.world.ShareSettings.compare;
-import static tbmc.perworld.main.MainPlugin.debugClock;
-import static tbmc.perworld.main.MainPlugin.plugin;
-import static tbmc.perworld.main.MainPlugin.config;
+import static perworld.cache.world.ShareSettings.compare;
+import static perworld.main.MainPlugin.config;
+import static perworld.main.MainPlugin.debugClock;
+import static perworld.main.MainPlugin.plugin;
 
 public class PlayerUpdater {
 	
@@ -57,8 +57,8 @@ public class PlayerUpdater {
 		updatePlayerData(values, player);
 		
 		player.sendMessage("...done, " + (System.currentTimeMillis() - debugClock) + " ms");
-		new tbmc.perworld.cache.world.ShareSettings().initCache();
-		player.sendMessage(tbmc.perworld.cache.world.ShareSettings.cache.keySet().stream().collect(Collectors.joining(",")));
+		new perworld.cache.world.ShareSettings().initCache();
+		player.sendMessage(perworld.cache.world.ShareSettings.cache.keySet().stream().collect(Collectors.joining(",")));
 	}
 	
 	
@@ -66,7 +66,7 @@ public class PlayerUpdater {
 	public static void updateLocation(Values values, Player player){
 		config.set(
 				values.pFrom + ".location", 
-				tbmc.perworld.serializers.location.serialize(player.getLocation())
+				perworld.serializers.location.serialize(player.getLocation())
 				);
 		plugin.saveConfig();
 		/*	players are not automatically moved to their stored location,
@@ -78,18 +78,18 @@ public class PlayerUpdater {
 	//UPDATE INVENTORIES
 	public static void updateInventories(Values values, Player player){
 		IInventory inventory = ((CraftInventory) player.getInventory()).getInventory();
-		config.set(values.pFrom + ".inventory", tbmc.perworld.serializers.inventory.serialize(inventory));
+		config.set(values.pFrom + ".inventory", perworld.serializers.inventory.serialize(inventory));
 		plugin.saveConfig();
 		if (!values.shareinv)
-			tbmc.perworld.serializers.inventory.setFromSerialized(
+			perworld.serializers.inventory.setFromSerialized(
 					inventory, config.getString(values.pTo + ".inventory")
 					);
 		
 		IInventory enderchest = ((CraftInventory) player.getEnderChest()).getInventory();
-		config.set(values.pFrom + ".enderchest", tbmc.perworld.serializers.inventory.serialize(enderchest));
+		config.set(values.pFrom + ".enderchest", perworld.serializers.inventory.serialize(enderchest));
 		plugin.saveConfig();		
 		if (!values.shareinv)
-			tbmc.perworld.serializers.inventory.setFromSerialized(
+			perworld.serializers.inventory.setFromSerialized(
 					enderchest, config.getString(values.pTo + ".enderchest")
 					);
 	}
@@ -97,10 +97,10 @@ public class PlayerUpdater {
 	
 	//UPDATE PLAYERDATA
 	public static void updatePlayerData(Values values, Player player){
-		config.set(values.pFrom + ".playerdata", tbmc.perworld.serializers.playerdata.serialize(player));
+		config.set(values.pFrom + ".playerdata", perworld.serializers.playerdata.serialize(player));
 		plugin.saveConfig();
 		if (!values.sharedata)
-			tbmc.perworld.serializers.playerdata.setFromSerialized(
+			perworld.serializers.playerdata.setFromSerialized(
 					player, config.getString(values.pTo + ".playerdata")
 					);
 	}

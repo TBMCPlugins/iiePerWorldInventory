@@ -1,4 +1,4 @@
-package tbmc.perworld.serializers;
+package perworld.serializers;
 
 import org.bukkit.Location;
 import org.bukkit.World;
